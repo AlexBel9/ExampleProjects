@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TerritoryCapture</string>
+    <string name="player1">игрок 1</string>
+    <string name="player2">игрок 2</string>
+    <string name="points">очки:</string>
+    <string name="back">назад</string>
+    <string name="restart">начать заново</string>
+</resources>
