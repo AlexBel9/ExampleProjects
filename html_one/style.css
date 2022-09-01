@@ -1,0 +1,39 @@
+.form{
+    display: none;
+    width: 300px;
+    height: 200px;
+    background-color: coral;
+    border-radius: 20px;
+    box-shadow: 10px 5px 10px 5px blue;
+}
+.todo-title{
+    display: flex;
+    justify-content: center;
+    color: coral;
+    box-shadow: 10px;
+}
+button {
+    font: bold;
+    background-color: blue;
+    color: aliceblue;
+    padding: 10px;
+    font-weight: 600;
+    border:none;
+    border-radius: 5px;
+}
+div{
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.input{
+    border-radius:10px;
+    border: 1px solid #eee;
+    padding: 10px;
+    margin: 10px;
+    transition: .3s border-color;
+}
+.input:hover{
+    border: 1px solid #aaa;
+}
