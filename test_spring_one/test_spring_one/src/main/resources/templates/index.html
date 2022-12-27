@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bezmuki Count</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="general_div">
+
+    <div>
+        <H1>Hello bezmuki</H1>
+
+        <div>
+            <h4>Добавить единицы измерения</h4>
+            <input class="input_unit" placeholder="название ед.измерения">
+            <button class="save_unit">сохранить</button>
+        </div>
+
+        <div>
+            <h4>Внести новое сырьё</h4>
+            <div>
+                <input class="input_crude" type="text" placeholder="название сырья">
+                <select class="select_unit">
+                    <option disabled>выберите ед.измерения</option>
+                </select>
+                <button class="save_crude">сохранить</button>
+                <button class="delete_crude">удалить</button>
+            </div>
+
+        </div>
+        <div id="add_new_product">
+            <h4>Внести новую сводную</h4>
+            <input class="new_product" type="text" placeholder="название продукта">
+            <button class="add_product">новый продукт</button>
+            <div id="add_product_div"></div>
+            <button class="save">сохранить</button>
+
+        </div>
+
+        <div class="product_count">
+            <h4>Посчитать всего сырья</h4>
+            <select class="products">
+                <option disabled>выберите продукт</option>
+            </select>
+            <input class="count_product" type="number" placeholder="количество продуктов">
+            <button class="next_product">далее</button>
+            <div id="add_form_product"></div>
+            <button class="count_amount">посчитать</button>
+        </div>
+        <textarea class="general_form" rows="20" cols="40" readonly></textarea>
+    </div>
+</div>
+
+<script src="js/counting.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

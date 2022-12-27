@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+
+spring:
+  datasource:
+    username: root
+    password: 12qw
+    url: jdbc:mysql://localhost:3306/products?useSSL=false&requireSSL=false&allowPublicKeyRetrieval=true
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
