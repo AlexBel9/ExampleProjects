@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShowProductList">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#bfff30"
+        >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="список отслеживаемых продуктов"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:layout_marginBottom="10dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:background="#f2f2f2"
+            >
+
+            <LinearLayout
+                android:id="@+id/showProductInDB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dropDbButton"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="удалить всё"
+            style="@style/Animation.Design.BottomSheetDialog"
+            android:backgroundTint="@color/black"
+            app:cornerRadius="30dp"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundGravity="center"
+    tools:context=".AddProduct"
+
+    >
+
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#bfff30"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:layout_editor_absoluteX="-65dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="добавление продукта для отслеживания изменений"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/loadingPick"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            tools:ignore="MissingConstraints"></ImageView>
+
+        <EditText
+            android:id="@+id/setTextProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:hint="введите название продукта"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"></EditText>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/searchProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="отслеживать"
+            android:textColor="@color/white"
+            style="@style/Animation.Design.BottomSheetDialog"
+            android:backgroundTint="@color/black"
+            app:cornerRadius="30dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f2f2f2">
+
+            <LinearLayout
+                android:id="@+id/scrollProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
