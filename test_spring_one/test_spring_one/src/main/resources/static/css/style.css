@@ -1,0 +1,11 @@
+.general_form {
+    font-family: Verdana;
+    font-size: 20px;
+}
+body{
+    display: flex;
+    justify-content: center;
+}
+#general_div{
+    display: none;
+}
