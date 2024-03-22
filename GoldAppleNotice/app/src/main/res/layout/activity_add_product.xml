@@ -9,9 +9,6 @@
 
     >
 
-
-
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -60,13 +57,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:text="отслеживать"
+            android:layout_marginBottom="5dp"
+            android:text="@string/search_product"
             android:textColor="@color/white"
             style="@style/Animation.Design.BottomSheetDialog"
             android:backgroundTint="@color/black"
             app:cornerRadius="30dp"/>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/black"
+            />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

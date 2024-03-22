@@ -95,15 +95,17 @@ public class Constants  {
     //получение адреса где лежит картинка путём парсинга массива imageUrls
     private String getUrl(JSONObject product) throws JSONException {
         JSONArray imageUrls = product.getJSONArray("imageUrls");
-        String needImageIrl = null;
+        StringBuilder builder = new StringBuilder();
+//        String needImageIrl = null;
         for (int i = 0; i < imageUrls.length(); i++) {
             JSONObject url = (JSONObject) imageUrls.get(i);
             JSONArray format = url.getJSONArray("format");
             JSONArray screen = url.getJSONArray("screen");
-            needImageIrl = url.get("url").toString().replace("${screen}", screen.getString(0)).replace("${format}", format.getString(1));
-            break;
+            builder.append(url.get("url").toString().replace("${screen}", screen.getString(2)).replace("${format}", format.getString(0)))
+                    .append(" ");
+
         }
-        return needImageIrl;
+        return builder.toString();
     }
 
     @NonNull

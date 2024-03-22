@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#bfff30"
+        android:padding="15dp"
         >
 
         <TextView
@@ -22,11 +23,17 @@
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="25dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="15dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@color/black"
+            />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="500dp"
             android:background="#f2f2f2"
             >
 
@@ -36,11 +43,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@color/black"
+            />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/dropDbButton"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="удалить всё"

@@ -73,7 +73,7 @@ public class MainReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                System.currentTimeMillis() + 60 * 1000, 60 * 1000,
+                System.currentTimeMillis()+ AlarmManager.INTERVAL_HALF_DAY, AlarmManager.INTERVAL_HALF_DAY,
                 pendingIntent);
     }
 
@@ -86,7 +86,7 @@ public class MainReceiver extends BroadcastReceiver {
         notificationManager.createNotificationChannel(channel);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, ID_CHANNEL)
-                .setSmallIcon(R.drawable.logotip)
+                .setSmallIcon(R.drawable.gold_apple)
                 .setContentTitle(title)
                 .setContentText(message);
 //                .setLargeIcon(bitmap);
@@ -111,25 +111,18 @@ public class MainReceiver extends BroadcastReceiver {
                         MyDbManager dbManager = new MyDbManager(context);
                         dbManager.openDb();
                         dbManager.getFromDb().forEach(productFromDB -> {
-                            if (productFromDB.getMainVariantID().equals(productFromRequest.getMainVariantID()) && productFromDB.getActualPrice().equals(productFromRequest.getActualPrice())) {
+                            if (productFromDB.getMainVariantID().equals(productFromRequest.getMainVariantID()) && !productFromDB.getActualPrice().equals(productFromRequest.getActualPrice())) {
                                // if (productFromDB.getActualPrice().equals(productFromRequest.getActualPrice())) {
                                     int priceFromDb = amountValue(productFromDB.getActualPrice());
                                     int priceFromRequest = amountValue(productFromRequest.getActualPrice());
-//                                    ImageView imageView = new ImageView(context);
-//                                    ImageRequest imageRequest = new ImageRequest(productFromDB.getImgUrl(), new ImageParser(imageView),
-//                                            0, 0, null, Bitmap.Config.ARGB_8888,
-//                                            new ImageParser(context));
-//                                    Volley.newRequestQueue(context).add(imageRequest);
                                     dbManager.removeProduct(productFromDB);
                                     dbManager.insertToDb(productFromDB);
-//                                    Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
                                     showNotification(context, String.format("%s %s", productFromDB.getBrand(), productFromDB.getName()), messageDifferentPrice(priceFromDb, priceFromRequest),  productFromDB.getDbID());
                                // }
 
                             }
                         });
                         dbManager.closeDb();
-//                        Toast.makeText(context, String.format("%s %s", productDAO.getBrand(), productDAO.getName()), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Log.e("неверный запрос", "неверный запрос или такой товар отсутствует");
