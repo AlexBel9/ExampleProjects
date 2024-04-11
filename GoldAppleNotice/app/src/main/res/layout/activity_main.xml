@@ -47,7 +47,21 @@
             style="@style/Animation.Design.BottomSheetDialog"
             android:backgroundTint="#83070707"
             android:textColor="@color/white"
+            android:layout_marginBottom="30dp"
             app:cornerRadius="30dp"/>
+
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/showChangeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="посмотреть список изменений"
+            style="@style/Animation.Design.BottomSheetDialog"
+            android:backgroundTint="#83070707"
+            android:textColor="@color/white"
+            app:cornerRadius="30dp"/>
+
 
 
     </LinearLayout>

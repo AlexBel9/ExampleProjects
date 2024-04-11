@@ -34,7 +34,7 @@ public class AddLayoutWithProduct {
         TextView textView = new TextView(context);
         textView.append(desc);
         textView.setGravity(Gravity.CENTER);
-        textView.setTextSize(20);
+        textView.setTextSize(15);
         textView.setTextColor(R.color.blue);
         Typeface typeface = Typeface.create(Typeface.SERIF, Typeface.BOLD);
         textView.setTypeface(typeface);

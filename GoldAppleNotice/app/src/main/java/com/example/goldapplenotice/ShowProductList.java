@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.goldapplenotice.dao.ProductDAO;
 import com.example.goldapplenotice.data.MyDbManager;
 import com.example.goldapplenotice.dialog.DialogDeleteProductFromDB;
+import com.example.goldapplenotice.dialog.RemoveAllProductsDialog;
 import com.example.goldapplenotice.utils.AddLayoutWithProduct;
 
 import java.util.ArrayList;
@@ -67,10 +68,13 @@ public class ShowProductList extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         if (view.equals(dropDB)) {
             dbManager.openDb();
-            dbManager.removeAllFromDb();
+            if(dbManager.getFromDb().isEmpty()){
+                Toast.makeText(this, "список уже пуст!", Toast.LENGTH_SHORT).show();
+            } else {
+                RemoveAllProductsDialog removeAllProductsDialog = new RemoveAllProductsDialog(this, mainLayout, emptyText());
+                removeAllProductsDialog.showDialog();
+            }
             dbManager.closeDb();
-            mainLayout.removeAllViews();
-            mainLayout.addView(emptyText());
         }
         if(!productDAOList.isEmpty()){
             productDAOList.forEach(product -> {

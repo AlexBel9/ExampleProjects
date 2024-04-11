@@ -18,7 +18,8 @@ public class ProductDAO {
     private String imgUrl;
     private int viewID;
     private int dbID;
-
+    private String differentPrice;
+    private String date;
 
     public ProductDAO() {
     }
@@ -104,6 +105,22 @@ public class ProductDAO {
 
     public void setDbID(int dbID) {
         this.dbID = dbID;
+    }
+
+    public String getDifferentPrice() {
+        return differentPrice;
+    }
+
+    public void setDifferentPrice(String differentPrice) {
+        this.differentPrice = differentPrice;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @NonNull

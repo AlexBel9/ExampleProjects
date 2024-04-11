@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button addProductButton;
     private Button showListButton;
+    private Button showChangeList;
 
 
     @Override
@@ -42,8 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void init(){
         addProductButton = findViewById(R.id.addProduct);
         showListButton = findViewById(R.id.showListProduct);
+        showChangeList = findViewById(R.id.showChangeList);
         addProductButton.setOnClickListener(this);
         showListButton.setOnClickListener(this);
+        showChangeList.setOnClickListener(this);
     }
 
 
@@ -55,6 +58,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view.equals(showListButton)){
             Intent intent = new Intent(MainActivity.this, ShowProductList.class);
+            startActivity(intent);
+        }
+        if(view.equals(showChangeList)){
+            Intent intent = new Intent(MainActivity.this,CheckChange.class);
             startActivity(intent);
         }
     }

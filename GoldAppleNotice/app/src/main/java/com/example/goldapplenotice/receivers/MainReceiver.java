@@ -11,26 +11,15 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.goldapplenotice.AddProduct;
-import com.example.goldapplenotice.MainActivity;
 import com.example.goldapplenotice.R;
 import com.example.goldapplenotice.dao.ProductDAO;
 import com.example.goldapplenotice.data.MyDbManager;
 import com.example.goldapplenotice.utils.GenerateURL;
-import com.example.goldapplenotice.utils.ImageParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,9 +30,8 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Vector;
 import java.util.regex.Pattern;
 
 public class MainReceiver extends BroadcastReceiver {
@@ -65,7 +53,6 @@ public class MainReceiver extends BroadcastReceiver {
         });
 
         dbManager.closeDb();
-//        Toast.makeText(context, date, Toast.LENGTH_LONG).show();
         Log.e("myLog", "message");
 
         Intent intent1 = new Intent(context, MainReceiver.class);
@@ -75,6 +62,9 @@ public class MainReceiver extends BroadcastReceiver {
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis()+ AlarmManager.INTERVAL_HALF_DAY, AlarmManager.INTERVAL_HALF_DAY,
                 pendingIntent);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+//                System.currentTimeMillis() + 60000, 60000,
+//                pendingIntent);
     }
 
     private void showNotification(Context context, String title, String message, int id) {
@@ -110,18 +100,23 @@ public class MainReceiver extends BroadcastReceiver {
                         ProductDAO productFromRequest = new ProductDAO(response.getJSONObject(i));
                         MyDbManager dbManager = new MyDbManager(context);
                         dbManager.openDb();
+//
                         dbManager.getFromDb().forEach(productFromDB -> {
                             if (productFromDB.getMainVariantID().equals(productFromRequest.getMainVariantID()) && !productFromDB.getActualPrice().equals(productFromRequest.getActualPrice())) {
-                               // if (productFromDB.getActualPrice().equals(productFromRequest.getActualPrice())) {
-                                    int priceFromDb = amountValue(productFromDB.getActualPrice());
-                                    int priceFromRequest = amountValue(productFromRequest.getActualPrice());
-                                    dbManager.removeProduct(productFromDB);
-                                    dbManager.insertToDb(productFromDB);
-                                    showNotification(context, String.format("%s %s", productFromDB.getBrand(), productFromDB.getName()), messageDifferentPrice(priceFromDb, priceFromRequest),  productFromDB.getDbID());
-                               // }
-
+                                Calendar calendar = Calendar.getInstance();
+                                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                String date = format.format(calendar.getTime());
+                                int priceFromDb = amountValue(productFromDB.getActualPrice());
+                                int priceFromRequest = amountValue(productFromRequest.getActualPrice());
+                                productFromRequest.setDifferentPrice(messageDifferentPrice(priceFromDb, priceFromRequest));
+                                productFromRequest.setDate(date);
+                                dbManager.removeProduct(productFromDB);// удаление из базы не актуального товара
+                                dbManager.insertToDb(productFromRequest);// добавление в базу актуального товара
+                                dbManager.insertToDbChange(productFromRequest);// добавление в базу информации о изменении товара
+                                showNotification(context, String.format("%s %s", productFromDB.getBrand(), productFromDB.getName()), messageDifferentPrice(priceFromDb, priceFromRequest), productFromDB.getDbID());
                             }
                         });
+//
                         dbManager.closeDb();
                     }
                 } else {
@@ -209,7 +204,7 @@ public class MainReceiver extends BroadcastReceiver {
 
     private String messageDifferentPrice(int priceFromDb, int priceFromRequest) {
         if (priceFromDb > priceFromRequest) {
-            return String.format("цена снизилась %d руб.", priceFromDb - priceFromRequest);
+            return String.format("цена снизилась на %d руб.", priceFromDb - priceFromRequest);
         } else {
             return String.format("цена стала дороже на %d руб.", priceFromRequest - priceFromDb);
         }
